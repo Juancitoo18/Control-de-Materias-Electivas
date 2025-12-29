@@ -1,0 +1,147 @@
+✅ GUÍA DEFINITIVA – TAREA PROGRAMADA CON 24 DESENCADENADORES
+🕒 PASO 1 — Abrir el Programador
+
+Inicio → escribir Programador de tareas
+
+Abrilo
+
+🧩 PASO 2 — Crear tarea (NO básica)
+
+En el panel derecho:
+
+Crear tarea…
+
+🔐 PASO 3 — Pestaña General
+
+Configuralo así:
+
+Nombre:
+Procesar avisos de electivas
+
+Descripción:
+Envía avisos de electivas pendientes cada hora
+
+Opciones de seguridad:
+
+☑ Ejecutar tanto si el usuario inició sesión como si no
+
+☑ Ejecutar con los privilegios más altos
+
+✔ Usuario: el tuyo (Juan / JUANCITO)
+
+Configurar para:
+Windows 10 / Windows 11
+
+⏰ PASO 4 — Pestaña Desencadenadores
+
+👉 ACÁ ESTÁ LA CLAVE
+
+🔹 Regla de oro
+
+❌ NO usar “Repetir cada…”
+✔ UN trigger = UNA hora exacta
+
+🔹 Crear los 24 desencadenadores
+
+Para cada hora, repetí esto:
+
+Clic Nuevo…
+
+Iniciar la tarea:
+→ Según una programación
+
+Configuración:
+→ Diario
+
+Fecha: hoy
+
+Hora: (una por cada trigger)
+
+00:00
+
+01:00
+
+02:00
+
+…
+
+23:00
+
+❌ NO marcar “Repetir cada”
+
+☑ Habilitado
+
+Aceptar
+
+💡 Sí, son 24.
+💡 No falla nunca.
+
+▶ PASO 5 — Pestaña Acciones
+
+Clic Nueva…
+
+Acción: Iniciar un programa
+
+Programa o script:
+
+C:\AvisosElectivas\ProcesadorAvisosElectivas.exe
+
+
+Iniciar en:
+
+C:\AvisosElectivas\
+
+
+Aceptar
+
+📌 Este paso es obligatorio, ya lo tenés bien.
+
+⚙ PASO 6 — Pestaña Condiciones
+
+Dejá así:
+
+❌ Iniciar solo si el equipo está inactivo
+
+❌ Iniciar solo si está conectado a corriente
+
+❌ Iniciar solo si hay red
+
+👉 Todo desmarcado.
+
+🧠 PASO 7 — Pestaña Configuración
+
+Configurá EXACTO así:
+
+☑ Permitir que la tarea se ejecute a petición
+
+☑ Ejecutar lo antes posible si se omitió una ejecución
+
+❌ Detener la tarea si se ejecuta durante…
+
+❌ Eliminar la tarea si no se vuelve a ejecutar
+
+🔹 Si la tarea ya está en ejecución:
+
+➡️ Ejecutar una nueva instancia en paralelo
+
+(igual no se pisan, pero evita bloqueos)
+
+🔍 PASO 8 — Guardar
+
+Aceptar
+
+Ingresar contraseña del usuario si la pide
+
+🧪 PASO 9 — PRUEBA FINAL
+
+Botón derecho sobre la tarea → Ejecutar
+
+Verificá:
+
+✔ envía mail
+
+✔ marca avisos
+
+Esperá la próxima hora exacta
+
+👉 Va a ejecutarse sí o sí.

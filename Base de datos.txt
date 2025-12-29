@@ -1,0 +1,134 @@
+-- Crear base de datos
+CREATE DATABASE dbElectivas;
+GO
+USE dbElectivas;
+GO
+
+-- Tabla de usuarios
+CREATE TABLE Usuarios (
+    id_usuario INT IDENTITY(1,1) PRIMARY KEY,
+    nombre_usuario VARCHAR(100) NOT NULL UNIQUE,
+    contraseña_usuario VARCHAR(100) NOT NULL,
+    Estado BIT
+);
+GO
+
+CREATE TABLE Carreras (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    Estado BIT NOT NULL
+);
+GO
+
+CREATE TABLE MateriasElectivas (
+    Id INT IDENTITY PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    CarreraId INT NOT NULL,
+    NumeroResolucion NVARCHAR(50),
+    FechaAprobacion DATE NOT NULL,
+    FechaVencimiento DATE NOT NULL,
+    Hasta NVARCHAR(50),
+    Desde NVARCHAR(50),
+    Estado BIT NOT NULL,
+    FOREIGN KEY (CarreraId) REFERENCES Carreras(Id)
+);
+GO
+
+CREATE TABLE AvisosEnvios
+(
+    IdEnvio INT IDENTITY PRIMARY KEY,
+    IdAviso INT NOT NULL,
+    EmailDestino VARCHAR(150) NOT NULL,
+    FechaEnvio DATETIME NOT NULL DEFAULT GETDATE(),
+    Estado VARCHAR(20) NOT NULL, -- Enviado / Error
+
+    FOREIGN KEY (IdAviso) REFERENCES AvisosMateria(IdAviso)
+);
+GO
+
+CREATE TABLE AvisosMateria (
+    IdAviso INT IDENTITY PRIMARY KEY,
+    MateriaId INT NOT NULL,
+    TipoAviso INT NOT NULL, -- 6 o 12
+    FechaProgramada DATE NOT NULL,
+    FechaEnvio DATE NULL,
+    Estado VARCHAR(20) NOT NULL, -- Pendiente | Enviado | Cancelado
+
+    CONSTRAINT FK_AvisosMateria_Materias
+        FOREIGN KEY (MateriaId)
+        REFERENCES MateriasElectivas(Id)
+);
+GO
+
+Insert Into Carreras (Nombre,Estado) Values
+('Ingeniería Civil',1),
+('Ingeniería en Energía Eléctrica',1),
+('Ingeniería en Industria Automotriz',1),
+('Ingeniería Mecánica',1),
+('Licenciatura en Organización Industrial',1);
+GO
+
+Insert Into Usuarios(nombre_usuario,contraseña_usuario) Values
+('jrios','1234');
+GO
+
+-- Materias Electivas de prueba
+INSERT INTO MateriasElectivas 
+(Nombre, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+VALUES
+('Inteligencia Artificial Aplicada', 1, 'RES-2024-2001', '2024-03-10', '2029-03-10', '2024', '2025', 1),
+('Nanotecnología y Materiales Avanzados', 2, 'RES-2023-2002', '2023-04-15', '2028-04-15', '2023', '2024', 1),
+('Robótica Colaborativa', 3, 'RES-2022-2003', '2022-09-20', '2027-09-20', '2022', '2023', 1),
+('Diseño Sustentable de Productos', 4, 'RES-2021-2004', '2021-11-05', '2026-11-05', '2021', '2022', 1),
+('Gestión de la Innovación Tecnológica', 5, 'RES-2020-2005', '2020-07-12', '2025-07-12', '2020', '2021', 1),
+('Biotecnología Industrial', 1, 'RES-2024-2006', '2024-05-18', '2029-05-18', '2024', '2025', 1),
+('Simulación Computacional de Fluidos', 2, 'RES-2023-2007', '2023-02-22', '2028-02-22', '2023', '2024', 1),
+('Ingeniería de Software Avanzada', 3, 'RES-2022-2008', '2022-08-30', '2027-08-30', '2022', '2023', 1);
+GO
+
+CREATE PROCEDURE sp_AgregarMateriaElectiva
+    @Nombre NVARCHAR(100),
+    @CarreraId INT,
+    @NumeroResolucion NVARCHAR(50),
+    @FechaAprobacion DATE,
+    @FechaVencimiento DATE,
+    @Desde NVARCHAR(50),
+    @Hasta NVARCHAR(50),
+    @Estado BIT
+AS
+BEGIN
+    INSERT INTO MateriasElectivas 
+    (Nombre, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+    VALUES 
+    (@Nombre, @CarreraId, @NumeroResolucion, @FechaAprobacion, @FechaVencimiento, @Desde, @Hasta, @Estado);
+
+    SELECT SCOPE_IDENTITY(); -- devuelve el Id insertado
+END;
+GO
+
+
+CREATE PROCEDURE spEditarMateria
+    @Id INT,
+    @Nombre NVARCHAR(100),
+    @CarreraId INT,
+    @NumeroResolucion NVARCHAR(50),
+    @FechaAprobacion DATE,
+    @FechaVencimiento DATE,
+    @Desde NVARCHAR(50),
+    @Hasta NVARCHAR(50),
+    @Estado BIT
+AS
+BEGIN
+    UPDATE MateriasElectivas
+    SET 
+        Nombre = @Nombre,
+        CarreraId = @CarreraId,
+        NumeroResolucion = @NumeroResolucion,
+        FechaAprobacion = @FechaAprobacion,
+        FechaVencimiento = @FechaVencimiento,
+        Desde = @Desde,
+        Hasta = @Hasta,
+        Estado = @Estado
+    WHERE Id = @Id;
+END;
+GO
