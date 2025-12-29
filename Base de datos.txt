@@ -23,6 +23,7 @@ GO
 CREATE TABLE MateriasElectivas (
     Id INT IDENTITY PRIMARY KEY,
     Nombre NVARCHAR(100) NOT NULL,
+    CodigodeMateria INT NOT NULL,
     CarreraId INT NOT NULL,
     NumeroResolucion NVARCHAR(50),
     FechaAprobacion DATE NOT NULL,
@@ -34,15 +35,20 @@ CREATE TABLE MateriasElectivas (
 );
 GO
 
-CREATE TABLE AvisosEnvios
-(
-    IdEnvio INT IDENTITY PRIMARY KEY,
-    IdAviso INT NOT NULL,
-    EmailDestino VARCHAR(150) NOT NULL,
-    FechaEnvio DATETIME NOT NULL DEFAULT GETDATE(),
-    Estado VARCHAR(20) NOT NULL, -- Enviado / Error
-
-    FOREIGN KEY (IdAviso) REFERENCES AvisosMateria(IdAviso)
+CREATE TABLE MateriasElectivasHistorial (
+    IdHistorial INT IDENTITY PRIMARY KEY,
+    MateriaId INT NOT NULL, -- referencia a la materia original
+    Nombre NVARCHAR(100) NOT NULL,
+    CodigodeMateria INT NOT NULL,
+    CarreraId INT NOT NULL,
+    NumeroResolucion NVARCHAR(50),
+    FechaAprobacion DATE NOT NULL,
+    FechaVencimiento DATE NOT NULL,
+    Desde NVARCHAR(50),
+    Hasta NVARCHAR(50),
+    FechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+    Estado BIT NOT NULL,
+    FOREIGN KEY (MateriaId) REFERENCES MateriasElectivas(Id)
 );
 GO
 
@@ -60,6 +66,20 @@ CREATE TABLE AvisosMateria (
 );
 GO
 
+CREATE TABLE AvisosEnvios
+(
+    IdEnvio INT IDENTITY PRIMARY KEY,
+    IdAviso INT NOT NULL,
+    EmailDestino VARCHAR(150) NOT NULL,
+    FechaEnvio DATETIME NOT NULL DEFAULT GETDATE(),
+    Estado VARCHAR(20) NOT NULL, -- Enviado / Error
+
+    FOREIGN KEY (IdAviso) REFERENCES AvisosMateria(IdAviso)
+);
+GO
+
+
+
 Insert Into Carreras (Nombre,Estado) Values
 ('Ingeniería Civil',1),
 ('Ingeniería en Energía Eléctrica',1),
@@ -68,26 +88,34 @@ Insert Into Carreras (Nombre,Estado) Values
 ('Licenciatura en Organización Industrial',1);
 GO
 
-Insert Into Usuarios(nombre_usuario,contraseña_usuario) Values
-('jrios','1234');
+Insert Into Usuarios(nombre_usuario,contraseña_usuario,Estado) Values
+('jrios','1234',1);
 GO
 
 -- Materias Electivas de prueba
-INSERT INTO MateriasElectivas 
-(Nombre, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+INSERT INTO MateriasElectivas
+(Nombre, CodigodeMateria, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Hasta, Desde, Estado)
 VALUES
-('Inteligencia Artificial Aplicada', 1, 'RES-2024-2001', '2024-03-10', '2029-03-10', '2024', '2025', 1),
-('Nanotecnología y Materiales Avanzados', 2, 'RES-2023-2002', '2023-04-15', '2028-04-15', '2023', '2024', 1),
-('Robótica Colaborativa', 3, 'RES-2022-2003', '2022-09-20', '2027-09-20', '2022', '2023', 1),
-('Diseño Sustentable de Productos', 4, 'RES-2021-2004', '2021-11-05', '2026-11-05', '2021', '2022', 1),
-('Gestión de la Innovación Tecnológica', 5, 'RES-2020-2005', '2020-07-12', '2025-07-12', '2020', '2021', 1),
-('Biotecnología Industrial', 1, 'RES-2024-2006', '2024-05-18', '2029-05-18', '2024', '2025', 1),
-('Simulación Computacional de Fluidos', 2, 'RES-2023-2007', '2023-02-22', '2028-02-22', '2023', '2024', 1),
-('Ingeniería de Software Avanzada', 3, 'RES-2022-2008', '2022-08-30', '2027-08-30', '2022', '2023', 1);
+('Gestión de Proyectos de Ingeniería',        5001, 1, 'RES-2023-4101', '2023-04-12', '2028-04-12', '2028', '2023', 1),
+('Sistemas de Energía Renovable',             5002, 1, 'RES-2024-4102', '2024-02-20', '2029-02-20', '2029', '2024', 1),
+
+('Automatización y Control Industrial',       5101, 2, 'RES-2022-4201', '2022-06-15', '2027-06-15', '2027', '2022', 1),
+('Electrónica de Potencia Aplicada',          5102, 2, 'RES-2023-4202', '2023-03-10', '2028-03-10', '2028', '2023', 1),
+
+('Robótica Industrial Avanzada',               5201, 3, 'RES-2021-4301', '2021-09-01', '2026-09-01', '2026', '2021', 1),
+('Vehículos Eléctricos e Híbridos',            5202, 3, 'RES-2024-4302', '2024-05-05', '2029-05-05', '2029', '2024', 1),
+
+('Diseño y Análisis de Elementos Mecánicos',  5301, 4, 'RES-2022-4401', '2022-08-18', '2027-08-18', '2027', '2022', 1),
+('Eficiencia Energética en Sistemas Mecánicos',5302, 4, 'RES-2023-4402', '2023-10-22', '2028-10-22', '2028', '2023', 1),
+
+('Gestión de Calidad y Mejora Continua',       5401, 5, 'RES-2021-4501', '2021-07-30', '2026-07-30', '2026', '2021', 1),
+('Innovación y Emprendimientos Tecnológicos', 5402, 5, 'RES-2024-4502', '2024-04-14', '2029-04-14', '2029', '2024', 1);
 GO
+
 
 CREATE PROCEDURE sp_AgregarMateriaElectiva
     @Nombre NVARCHAR(100),
+    @CodigoMateria INT,
     @CarreraId INT,
     @NumeroResolucion NVARCHAR(50),
     @FechaAprobacion DATE,
@@ -98,11 +126,11 @@ CREATE PROCEDURE sp_AgregarMateriaElectiva
 AS
 BEGIN
     INSERT INTO MateriasElectivas 
-    (Nombre, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+    (Nombre,CodigodeMateria, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
     VALUES 
-    (@Nombre, @CarreraId, @NumeroResolucion, @FechaAprobacion, @FechaVencimiento, @Desde, @Hasta, @Estado);
+    (@Nombre,@CodigoMateria, @CarreraId, @NumeroResolucion, @FechaAprobacion, @FechaVencimiento, @Desde, @Hasta, @Estado);
 
-    SELECT SCOPE_IDENTITY(); -- devuelve el Id insertado
+    SELECT SCOPE_IDENTITY(); 
 END;
 GO
 
@@ -112,23 +140,43 @@ CREATE PROCEDURE spEditarMateria
     @Nombre NVARCHAR(100),
     @CarreraId INT,
     @NumeroResolucion NVARCHAR(50),
-    @FechaAprobacion DATE,
-    @FechaVencimiento DATE,
-    @Desde NVARCHAR(50),
-    @Hasta NVARCHAR(50),
+    @CodigoMateria INT,
     @Estado BIT
 AS
 BEGIN
     UPDATE MateriasElectivas
-    SET 
-        Nombre = @Nombre,
+    SET Nombre = @Nombre,
         CarreraId = @CarreraId,
         NumeroResolucion = @NumeroResolucion,
-        FechaAprobacion = @FechaAprobacion,
-        FechaVencimiento = @FechaVencimiento,
-        Desde = @Desde,
-        Hasta = @Hasta,
+        CodigodeMateria = @CodigoMateria,
         Estado = @Estado
     WHERE Id = @Id;
 END;
 GO
+
+CREATE PROCEDURE spRenovarMateria
+    @Id INT,
+    @NumeroResolucion NVARCHAR(50),
+    @FechaAprobacion DATE,
+    @FechaVencimiento DATE
+AS
+BEGIN
+    INSERT INTO MateriasElectivasHistorial
+    (MateriaId, Nombre, CodigodeMateria, CarreraId, NumeroResolucion,
+     FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+    SELECT Id, Nombre, CodigodeMateria, CarreraId, NumeroResolucion,
+           FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado
+    FROM MateriasElectivas
+    WHERE Id = @Id;
+
+
+    UPDATE MateriasElectivas
+    SET NumeroResolucion = @NumeroResolucion,
+        FechaAprobacion = @FechaAprobacion,
+        FechaVencimiento = @FechaVencimiento,
+        Desde = YEAR(@FechaAprobacion),
+        Hasta = YEAR(@FechaVencimiento)
+    WHERE Id = @Id;
+END;
+GO
+
