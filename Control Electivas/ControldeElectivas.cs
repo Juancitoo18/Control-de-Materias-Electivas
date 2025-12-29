@@ -69,6 +69,7 @@ namespace Control_Electivas
             dgv.Columns["Estado"].Visible = false;
 
             dgv.Columns["Carrera"].FillWeight = 25;
+            dgv.Columns["Materia"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns["Materias Electivas"].FillWeight = 40;
             dgv.Columns["Resolución de Habilitación"].FillWeight = 15;
             dgv.Columns["Fecha de Resolucion Habilitación"].FillWeight = 10;
@@ -199,6 +200,7 @@ namespace Control_Electivas
                 Id = Convert.ToInt32(row["Id"]),
                 Nombre = row["Materias Electivas"].ToString(),
                 NumeroResolucion = row["Resolución de Habilitación"].ToString(),
+                CodigoMateria = Convert.ToInt32(row["CodigodeMateria"]),
                 FechaAprobacion = Convert.ToDateTime(row["Fecha de Resolucion Habilitación"]),
                 FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                 Desde = row["Desde"].ToString(),
@@ -286,6 +288,27 @@ namespace Control_Electivas
             new AvisosForm().ShowDialog();
         }
 
+        private void tsmHistorial_Click(object sender, EventArgs e)
+        {
+            if (dgvMaterias.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una materia.");
+                return;
+            }
+
+            int materiaId = Convert.ToInt32(
+                dgvMaterias.SelectedRows[0].Cells["Id"].Value);
+
+            dgvMaterias.DataSource = NegMate.ObtenerHistorialMateria(materiaId);
+            dgvMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMaterias.Columns["Nombre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvMaterias.Columns["Desde"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvMaterias.Columns["Hasta"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            EstadoConsulta();
+            CentrarTitulo("Historial de Materias Electivas");
+
+        }
+
         #endregion
         // =====================================================
 
@@ -346,8 +369,6 @@ namespace Control_Electivas
                 porCarreraToolStripMenuItem.ShowDropDown();
             }
         }
-
-       
 
         #endregion
         // =====================================================

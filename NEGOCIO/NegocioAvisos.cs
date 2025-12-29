@@ -164,16 +164,6 @@ namespace NEGOCIO
                 CrearAvisoMateria(materia.Id, 6, fecha6);
         }
 
-        public bool RenovarMateria(MateriaElectiva materiaActualizada)
-        {
-            bool ok = daoMaterias.ActualizarFechas(materiaActualizada);
-            if (!ok) return false;
-
-            daoAvisos.CancelarPendientesPorMateria(materiaActualizada.Id);
-            GenerarAvisosPorMateria(materiaActualizada);
-
-            return true;
-        }
         public bool CancelarPendientesPorMateria(int materiaId)
         {
             return daoAvisos.CancelarPendientesPorMateria(materiaId);

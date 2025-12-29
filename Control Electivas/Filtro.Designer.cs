@@ -41,12 +41,14 @@
             this.cmbCarrera = new System.Windows.Forms.ComboBox();
             this.lblResolucion = new System.Windows.Forms.Label();
             this.txtResolucion = new System.Windows.Forms.TextBox();
-            this.lblDesde = new System.Windows.Forms.Label();
-            this.txtDesde = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCodigoMateria = new System.Windows.Forms.TextBox();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.Aceptar = new System.Windows.Forms.Button();
             this.lblHasta = new System.Windows.Forms.Label();
             this.txtHasta = new System.Windows.Forms.TextBox();
-            this.Aceptar = new System.Windows.Forms.Button();
-            this.cancelar = new System.Windows.Forms.Button();
+            this.lblDesde = new System.Windows.Forms.Label();
+            this.txtDesde = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -54,7 +56,7 @@
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(20, 20);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(47, 13);
+            this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre:";
             // 
@@ -62,7 +64,7 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(129, 19);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(200, 20);
+            this.txtNombre.Size = new System.Drawing.Size(200, 22);
             this.txtNombre.TabIndex = 1;
             // 
             // lblCarrera
@@ -70,7 +72,7 @@
             this.lblCarrera.AutoSize = true;
             this.lblCarrera.Location = new System.Drawing.Point(20, 60);
             this.lblCarrera.Name = "lblCarrera";
-            this.lblCarrera.Size = new System.Drawing.Size(44, 13);
+            this.lblCarrera.Size = new System.Drawing.Size(55, 16);
             this.lblCarrera.TabIndex = 2;
             this.lblCarrera.Text = "Carrera:";
             // 
@@ -79,7 +81,7 @@
             this.cmbCarrera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCarrera.Location = new System.Drawing.Point(129, 59);
             this.cmbCarrera.Name = "cmbCarrera";
-            this.cmbCarrera.Size = new System.Drawing.Size(200, 21);
+            this.cmbCarrera.Size = new System.Drawing.Size(200, 24);
             this.cmbCarrera.TabIndex = 3;
             // 
             // lblResolucion
@@ -87,7 +89,7 @@
             this.lblResolucion.AutoSize = true;
             this.lblResolucion.Location = new System.Drawing.Point(20, 100);
             this.lblResolucion.Name = "lblResolucion";
-            this.lblResolucion.Size = new System.Drawing.Size(103, 13);
+            this.lblResolucion.Size = new System.Drawing.Size(129, 16);
             this.lblResolucion.TabIndex = 4;
             this.lblResolucion.Text = "Número Resolución:";
             // 
@@ -95,69 +97,86 @@
             // 
             this.txtResolucion.Location = new System.Drawing.Point(129, 99);
             this.txtResolucion.Name = "txtResolucion";
-            this.txtResolucion.Size = new System.Drawing.Size(200, 20);
+            this.txtResolucion.Size = new System.Drawing.Size(200, 22);
             this.txtResolucion.TabIndex = 5;
             // 
-            // lblDesde
+            // label1
             // 
-            this.lblDesde.AutoSize = true;
-            this.lblDesde.Location = new System.Drawing.Point(20, 141);
-            this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(41, 13);
-            this.lblDesde.TabIndex = 12;
-            this.lblDesde.Text = "Desde:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 133);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 16);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Codigo de Materia:";
             // 
-            // txtDesde
+            // txtCodigoMateria
             // 
-            this.txtDesde.Location = new System.Drawing.Point(129, 140);
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(200, 20);
-            this.txtDesde.TabIndex = 13;
+            this.txtCodigoMateria.Location = new System.Drawing.Point(129, 132);
+            this.txtCodigoMateria.Name = "txtCodigoMateria";
+            this.txtCodigoMateria.Size = new System.Drawing.Size(200, 22);
+            this.txtCodigoMateria.TabIndex = 19;
+            // 
+            // cancelar
+            // 
+            this.cancelar.Location = new System.Drawing.Point(225, 241);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(90, 30);
+            this.cancelar.TabIndex = 25;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
+            // Aceptar
+            // 
+            this.Aceptar.Location = new System.Drawing.Point(129, 241);
+            this.Aceptar.Name = "Aceptar";
+            this.Aceptar.Size = new System.Drawing.Size(90, 30);
+            this.Aceptar.TabIndex = 24;
+            this.Aceptar.Text = "Aceptar";
+            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
             // 
             // lblHasta
             // 
             this.lblHasta.AutoSize = true;
-            this.lblHasta.Location = new System.Drawing.Point(20, 177);
+            this.lblHasta.Location = new System.Drawing.Point(20, 207);
             this.lblHasta.Name = "lblHasta";
-            this.lblHasta.Size = new System.Drawing.Size(38, 13);
-            this.lblHasta.TabIndex = 14;
+            this.lblHasta.Size = new System.Drawing.Size(46, 16);
+            this.lblHasta.TabIndex = 22;
             this.lblHasta.Text = "Hasta:";
             // 
             // txtHasta
             // 
-            this.txtHasta.Location = new System.Drawing.Point(129, 176);
+            this.txtHasta.Location = new System.Drawing.Point(129, 206);
             this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(200, 20);
-            this.txtHasta.TabIndex = 15;
+            this.txtHasta.Size = new System.Drawing.Size(200, 22);
+            this.txtHasta.TabIndex = 23;
             // 
-            // Aceptar
+            // lblDesde
             // 
-            this.Aceptar.Location = new System.Drawing.Point(129, 211);
-            this.Aceptar.Name = "Aceptar";
-            this.Aceptar.Size = new System.Drawing.Size(90, 30);
-            this.Aceptar.TabIndex = 16;
-            this.Aceptar.Text = "Aceptar";
-            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
+            this.lblDesde.AutoSize = true;
+            this.lblDesde.Location = new System.Drawing.Point(20, 171);
+            this.lblDesde.Name = "lblDesde";
+            this.lblDesde.Size = new System.Drawing.Size(51, 16);
+            this.lblDesde.TabIndex = 20;
+            this.lblDesde.Text = "Desde:";
             // 
-            // cancelar
+            // txtDesde
             // 
-            this.cancelar.Location = new System.Drawing.Point(225, 211);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(90, 30);
-            this.cancelar.TabIndex = 17;
-            this.cancelar.Text = "Cancelar";
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            this.txtDesde.Location = new System.Drawing.Point(129, 170);
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(200, 22);
+            this.txtDesde.TabIndex = 21;
             // 
             // Filtro
             // 
-            this.AcceptButton = this.Aceptar;
-            this.ClientSize = new System.Drawing.Size(347, 266);
+            this.ClientSize = new System.Drawing.Size(347, 310);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.Aceptar);
             this.Controls.Add(this.lblHasta);
             this.Controls.Add(this.txtHasta);
             this.Controls.Add(this.lblDesde);
             this.Controls.Add(this.txtDesde);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCodigoMateria);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblCarrera);
@@ -174,12 +193,14 @@
 
         }
 
-        private System.Windows.Forms.Label lblDesde;
-        private System.Windows.Forms.TextBox txtDesde;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCodigoMateria;
+        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button Aceptar;
         private System.Windows.Forms.Label lblHasta;
         private System.Windows.Forms.TextBox txtHasta;
-        private System.Windows.Forms.Button Aceptar;
-        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Label lblDesde;
+        private System.Windows.Forms.TextBox txtDesde;
     }
 
     #endregion

@@ -36,10 +36,7 @@ namespace Control_Electivas
             txtNombre.Text = Mate.Nombre;
             cmbCarrera.SelectedValue = Mate.IdCarrera.Id;
             txtResolucion.Text = Mate.NumeroResolucion;
-            dtpAprobacion.Value = Mate.FechaAprobacion;
-            dtpVencimiento.Value = Mate.FechaVencimiento;
-            txtDesde.Text = Mate.Desde;
-            txtHasta.Text = Mate.Hasta;
+            txtCodigoMateria.Text = Mate.CodigoMateria.ToString();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -47,10 +44,7 @@ namespace Control_Electivas
             Mate.Nombre = txtNombre.Text;
             Mate.IdCarrera.Id = (int)cmbCarrera.SelectedValue;
             Mate.NumeroResolucion = txtResolucion.Text;
-            Mate.FechaAprobacion = dtpAprobacion.Value;
-            Mate.FechaVencimiento = dtpVencimiento.Value;
-            Mate.Desde = txtDesde.Text;
-            Mate.Hasta = txtHasta.Text;
+            Mate.CodigoMateria = int.Parse(txtCodigoMateria.Text);
 
             if (neg.EditarMateria(Mate))
             {
@@ -79,6 +73,5 @@ namespace Control_Electivas
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
     }
 }

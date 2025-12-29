@@ -90,6 +90,7 @@ namespace Control_Electivas
         private MateriaElectiva CargarMateria(MateriaElectiva Mate)
         {
             Mate.Nombre = txtNombre.Text;
+            Mate.CodigoMateria = int.Parse(txtCodigoMateria.Text);
             if (Mate.IdCarrera == null)
                 Mate.IdCarrera = new Carrera();
             Mate.IdCarrera.Id = (int)cmbCarrera.SelectedValue;
@@ -112,6 +113,5 @@ namespace Control_Electivas
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
     }
 }

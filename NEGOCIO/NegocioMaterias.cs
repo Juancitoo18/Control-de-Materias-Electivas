@@ -84,29 +84,29 @@ namespace NEGOCIO
 
         public bool RenovarMateria(MateriaElectiva materiaActualizada)
         {
-            bool ok = DaoMateria.ActualizarFechas(materiaActualizada);
+            bool ok = DaoMateria.RenovarMateria(materiaActualizada);
             if (!ok)
                 return false;
 
-            // Cancela avisos pendientes viejos
             negAvisos.CancelarPendientesPorMateria(materiaActualizada.Id);
 
-            // Genera nuevos avisos
             negAvisos.GenerarAvisosPorMateria(materiaActualizada);
 
             return true;
         }
-
         public MateriaElectiva ObtenerPorId(int id)
         {
             return DaoMateria.ObtenerPorId(id);
         }
-
         public string ObtenerNombreCarrera(int idCarrera)
         {
             return negCarrera.ObtenerNombreCarrera(idCarrera);
         }
-       
+        public DataTable ObtenerHistorialMateria(int materiaId)
+        {
+            return DaoMateria.ObtenerHistorialMateria(materiaId);
+        }
+
 
     }
 }

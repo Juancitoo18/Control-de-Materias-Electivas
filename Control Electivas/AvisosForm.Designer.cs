@@ -47,41 +47,46 @@
             this.dgvAvisos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvAvisos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvAvisos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAvisos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAvisos.Location = new System.Drawing.Point(12, 50);
+            this.dgvAvisos.Location = new System.Drawing.Point(16, 62);
+            this.dgvAvisos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvAvisos.MultiSelect = false;
             this.dgvAvisos.Name = "dgvAvisos";
             this.dgvAvisos.ReadOnly = true;
+            this.dgvAvisos.RowHeadersWidth = 51;
             this.dgvAvisos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvAvisos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAvisos.Size = new System.Drawing.Size(800, 325);
+            this.dgvAvisos.Size = new System.Drawing.Size(1067, 400);
             this.dgvAvisos.TabIndex = 0;
             // 
             // cboEstado
             // 
             this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Location = new System.Drawing.Point(70, 15);
+            this.cboEstado.Location = new System.Drawing.Point(93, 18);
+            this.cboEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(150, 21);
+            this.cboEstado.Size = new System.Drawing.Size(199, 24);
             this.cboEstado.TabIndex = 1;
             // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(12, 18);
+            this.lblEstado.Location = new System.Drawing.Point(16, 22);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(43, 13);
+            this.lblEstado.Size = new System.Drawing.Size(53, 16);
             this.lblEstado.TabIndex = 2;
             this.lblEstado.Text = "Estado:";
             // 
             // btnEnviar
             // 
             this.btnEnviar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnEnviar.Location = new System.Drawing.Point(212, 395);
+            this.btnEnviar.Location = new System.Drawing.Point(283, 486);
+            this.btnEnviar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(120, 30);
+            this.btnEnviar.Size = new System.Drawing.Size(160, 37);
             this.btnEnviar.TabIndex = 3;
             this.btnEnviar.Text = "Enviar aviso";
             this.btnEnviar.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancelar.Location = new System.Drawing.Point(352, 395);
+            this.btnCancelar.Location = new System.Drawing.Point(469, 486);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 30);
+            this.btnCancelar.Size = new System.Drawing.Size(160, 37);
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar aviso";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -101,9 +107,10 @@
             // btnActualizar
             // 
             this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnActualizar.Location = new System.Drawing.Point(492, 395);
+            this.btnActualizar.Location = new System.Drawing.Point(656, 486);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(120, 30);
+            this.btnActualizar.Size = new System.Drawing.Size(160, 37);
             this.btnActualizar.TabIndex = 5;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -111,9 +118,9 @@
             // 
             // AvisosForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 455);
+            this.ClientSize = new System.Drawing.Size(1099, 560);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEnviar);
@@ -121,6 +128,7 @@
             this.Controls.Add(this.cboEstado);
             this.Controls.Add(this.dgvAvisos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "AvisosForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

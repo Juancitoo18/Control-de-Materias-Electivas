@@ -9,6 +9,7 @@ namespace ENTIDADES
     public class MateriaElectiva
     {
         public int Id { get; set; }
+        public int CodigoMateria { get; set; }
         public string Nombre { get; set; }
         public Carrera IdCarrera { get; set; }  
         public string NumeroResolucion { get; set; }

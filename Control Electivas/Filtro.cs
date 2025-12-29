@@ -65,12 +65,14 @@ namespace Control_Electivas
             if (!string.IsNullOrWhiteSpace(txtResolucion.Text))
                 filtro.NumeroResolucion = txtResolucion.Text;
 
+            if (int.TryParse(txtCodigoMateria.Text, out int Codigo))
+                filtro.CodigoMateria = Codigo;
+
             if (int.TryParse(txtDesde.Text, out int desde))
                 filtro.Desde = desde;
 
             if (int.TryParse(txtHasta.Text, out int hasta))
                 filtro.Hasta = hasta;
-
 
             this.Tag = filtro;
             this.DialogResult = DialogResult.OK;

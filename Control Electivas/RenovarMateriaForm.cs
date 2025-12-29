@@ -28,6 +28,7 @@ namespace Control_Electivas
         {
             lblMateria.Text = materia.Nombre;
             lblCarrera.Text = negMaterias.ObtenerNombreCarrera(materia.IdCarrera.Id);
+            txtResolucion.Text = materia.NumeroResolucion;
             dtpAprobacion.Value = materia.FechaAprobacion;
             dtpVencimiento.Value = materia.FechaVencimiento;
         }
@@ -42,6 +43,7 @@ namespace Control_Electivas
 
             materia.FechaAprobacion = dtpAprobacion.Value;
             materia.FechaVencimiento = dtpVencimiento.Value;
+            materia.NumeroResolucion = txtResolucion.Text;
             materia.Desde = materia.FechaAprobacion.Year.ToString();
             materia.Hasta = materia.FechaVencimiento.Year.ToString();
 

@@ -10,6 +10,7 @@ namespace ENTIDADES
     {
         public string Nombre { get; set; }
         public int CarreraId { get; set; }
+        public int CodigoMateria { get; set; }
         public string NumeroResolucion { get; set; }
         public int? Desde { get; set; }
         public int? Hasta { get; set; }
