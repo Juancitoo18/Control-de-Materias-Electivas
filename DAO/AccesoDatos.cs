@@ -12,7 +12,7 @@ namespace DAO
     {
         public AccesoDatos() { }
 
-        string rutaBDSucursales = "Data Source=localhost\\sqlexpress; Initial Catalog=dbElectivas; Integrated Security=True";
+        string rutaBDSucursales = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dbElectivas;Integrated Security=True;";
 
         private SqlConnection ObtenerConexion()
         {

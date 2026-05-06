@@ -370,6 +370,11 @@ namespace Control_Electivas
             }
         }
 
+        private void verResolucionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Resoluciones().ShowDialog();
+        }
+
         #endregion
         // =====================================================
     }

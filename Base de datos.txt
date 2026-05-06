@@ -52,6 +52,28 @@ CREATE TABLE MateriasElectivasHistorial (
 );
 GO
 
+DROP TABLE ResolucionesMaterias;
+GO
+
+CREATE TABLE ResolucionesMaterias (
+
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    MateriaId INT NOT NULL,
+    NumeroResolucion INT NOT NULL,
+    Anio INT NOT NULL,
+    NombreArchivo VARCHAR(255) NULL, 
+    UrlArchivo VARCHAR(500) NULL,         
+    FechaCarga DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Resoluciones_Materia 
+        FOREIGN KEY (MateriaId) 
+        REFERENCES MateriasElectivas(Id),
+    CONSTRAINT UQ_Resolucion_Materia
+        UNIQUE (MateriaId, NumeroResolucion, Anio),
+    CONSTRAINT CK_Anio_Valido 
+        CHECK (Anio >= 2000 AND Anio <= YEAR(GETDATE()) + 1)
+);
+GO
+
 CREATE TABLE AvisosMateria (
     IdAviso INT IDENTITY PRIMARY KEY,
     MateriaId INT NOT NULL,
@@ -126,11 +148,22 @@ CREATE PROCEDURE sp_AgregarMateriaElectiva
 AS
 BEGIN
     INSERT INTO MateriasElectivas 
-    (Nombre,CodigodeMateria, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
+    (Nombre, CodigodeMateria, CarreraId, NumeroResolucion, FechaAprobacion, FechaVencimiento, Desde, Hasta, Estado)
     VALUES 
-    (@Nombre,@CodigoMateria, @CarreraId, @NumeroResolucion, @FechaAprobacion, @FechaVencimiento, @Desde, @Hasta, @Estado);
+    (@Nombre, @CodigoMateria, @CarreraId, @NumeroResolucion, @FechaAprobacion, @FechaVencimiento, @Desde, @Hasta, @Estado);
 
-    SELECT SCOPE_IDENTITY(); 
+    DECLARE @IdMateria INT = SCOPE_IDENTITY();
+
+    INSERT INTO ResolucionesMaterias
+    (MateriaId, NumeroResolucion, Anio)
+    VALUES
+    (
+        @IdMateria,
+        CAST(REPLACE(@NumeroResolucion, 'RES-', '') AS INT),
+        YEAR(@FechaAprobacion)
+    );
+
+    SELECT @IdMateria;
 END;
 GO
 
@@ -179,4 +212,5 @@ BEGIN
     WHERE Id = @Id;
 END;
 GO
+
 

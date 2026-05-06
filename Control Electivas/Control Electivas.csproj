@@ -106,6 +106,12 @@
     <Compile Include="RenovarMateriaForm.Designer.cs">
       <DependentUpon>RenovarMateriaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resoluciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resoluciones.Designer.cs">
+      <DependentUpon>Resoluciones.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ActualizarFecha.resx">
       <DependentUpon>ActualizarFecha.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +147,9 @@
     </Compile>
     <EmbeddedResource Include="RenovarMateriaForm.resx">
       <DependentUpon>RenovarMateriaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resoluciones.resx">
+      <DependentUpon>Resoluciones.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

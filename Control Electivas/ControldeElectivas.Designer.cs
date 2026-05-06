@@ -45,6 +45,7 @@ namespace Control_Electivas
             this.listadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMateriasPorVencer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMateriasVencidas = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHistorial = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFiltro = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmFlitroGeneral = new System.Windows.Forms.ToolStripMenuItem();
             this.porCarreraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,11 +55,11 @@ namespace Control_Electivas
             this.TspIngAutomotriz = new System.Windows.Forms.ToolStripMenuItem();
             this.TspIngLOI = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmVerAvisos = new System.Windows.Forms.ToolStripMenuItem();
+            this.verResolucionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCambiarContraseña = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCerrarSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.TspVolver = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmHistorial = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -122,7 +123,8 @@ namespace Control_Electivas
             this.tsmRegistroMateriasElectivas,
             this.listadosToolStripMenuItem,
             this.tsmFiltro,
-            this.TsmVerAvisos});
+            this.TsmVerAvisos,
+            this.verResolucionesToolStripMenuItem});
             this.tsMenu.Name = "tsMenu";
             this.tsMenu.Size = new System.Drawing.Size(60, 24);
             this.tsMenu.Text = "Menu";
@@ -213,6 +215,13 @@ namespace Control_Electivas
             this.tsmMateriasVencidas.Text = "Materias Vencidas";
             this.tsmMateriasVencidas.Click += new System.EventHandler(this.tsmMateriasVencidas_Click);
             // 
+            // tsmHistorial
+            // 
+            this.tsmHistorial.Name = "tsmHistorial";
+            this.tsmHistorial.Size = new System.Drawing.Size(306, 26);
+            this.tsmHistorial.Text = "Historial de Materias Renovadas";
+            this.tsmHistorial.Click += new System.EventHandler(this.tsmHistorial_Click);
+            // 
             // tsmFiltro
             // 
             this.tsmFiltro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -284,6 +293,13 @@ namespace Control_Electivas
             this.TsmVerAvisos.Text = "Ver Avisos";
             this.TsmVerAvisos.Click += new System.EventHandler(this.TsmVerAvisos_Click);
             // 
+            // verResolucionesToolStripMenuItem
+            // 
+            this.verResolucionesToolStripMenuItem.Name = "verResolucionesToolStripMenuItem";
+            this.verResolucionesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.verResolucionesToolStripMenuItem.Text = "Ver Resoluciones";
+            this.verResolucionesToolStripMenuItem.Click += new System.EventHandler(this.verResolucionesToolStripMenuItem_Click);
+            // 
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -315,13 +331,6 @@ namespace Control_Electivas
             this.TspVolver.Text = "←";
             this.TspVolver.Visible = false;
             this.TspVolver.Click += new System.EventHandler(this.TspVolver_Click);
-            // 
-            // tsmHistorial
-            // 
-            this.tsmHistorial.Name = "tsmHistorial";
-            this.tsmHistorial.Size = new System.Drawing.Size(306, 26);
-            this.tsmHistorial.Text = "Historial de Materias Renovadas";
-            this.tsmHistorial.Click += new System.EventHandler(this.tsmHistorial_Click);
             // 
             // ControldeElectivas
             // 
@@ -380,5 +389,6 @@ namespace Control_Electivas
         private System.Windows.Forms.ToolStripMenuItem TsmVerAvisos;
         private System.Windows.Forms.ToolStripMenuItem tsmRenovar;
         private System.Windows.Forms.ToolStripMenuItem tsmHistorial;
+        private System.Windows.Forms.ToolStripMenuItem verResolucionesToolStripMenuItem;
     }
 }
